@@ -1,11 +1,11 @@
 **Házi feladat**
 
-Csapatnév:
+Csapatnév: Naatho
 
 Csapattagok Neptun kóddal:
-- Minta Mókus (ABC123)
-- Minta Mókus (ABC123)
-- Minta Mókus (ABC123)
+- Atyi Ádám (ABC123)
+- Bóka Máté (NBU9HK)
+- Nagy Attila (ABC123)
 
 Bemutató videó URL: 
 (Ugye minden olyan dolog szerepel benne a kiírásnak megfelelően, amire pontot szeretnétek kapni?)
