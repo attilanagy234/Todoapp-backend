@@ -3,9 +3,9 @@
 Csapatnév: Naatho
 
 Csapattagok Neptun kóddal:
-- Atyi Ádám (ABC123)
+- Atyi Ádám (PTZY5J)
 - Bóka Máté (NBU9HK)
-- Nagy Attila (ABC123)
+- Nagy Attila (ER2KCI)
 
 Bemutató videó URL: 
 (Ugye minden olyan dolog szerepel benne a kiírásnak megfelelően, amire pontot szeretnétek kapni?)
