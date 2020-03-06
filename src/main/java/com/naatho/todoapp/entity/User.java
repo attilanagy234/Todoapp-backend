@@ -1,4 +1,4 @@
-package com.naatho.todoapp;
+package com.naatho.todoapp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
