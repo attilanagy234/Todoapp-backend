@@ -7,6 +7,13 @@ Csapattagok Neptun kóddal:
 - Bóka Máté (NBU9HK)
 - Nagy Attila (ER2KCI)
 
+
+## SETUP
+
+### Needed to setup in IntelliJ: Lombok plugin
+
+
+
 Bemutató videó URL: 
 (Ugye minden olyan dolog szerepel benne a kiírásnak megfelelően, amire pontot szeretnétek kapni?)
 
