@@ -1,3 +1,17 @@
+
+## Useful Info
+
+### Required java version: 11
+### IDE used for dev: IntelliJ Ultimate 2020
+- in IntelliJ install: Lombok plugin
+### Setting up the MySQL db locally:
+ 1. Install Docker
+ 2. run docker-compose up
+ 
+ The DB volume is mounted to ./database so it can remain persistent locally.
+
+
+---
 **Házi feladat**
 
 Csapatnév: Naatho
@@ -8,14 +22,8 @@ Csapattagok Neptun kóddal:
 - Nagy Attila (ER2KCI)
 
 
-## SETUP
-
-### Needed to setup in IntelliJ: Lombok plugin
-### Required java version: 11
-
-
-
-
+## Things to do
+---
 Bemutató videó URL: 
 (Ugye minden olyan dolog szerepel benne a kiírásnak megfelelően, amire pontot szeretnétek kapni?)
 
