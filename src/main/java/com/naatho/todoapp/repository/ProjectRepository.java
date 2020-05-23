@@ -1,4 +1,11 @@
 package com.naatho.todoapp.repository;
 
-public interface ProjectRepository {
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.naatho.todoapp.entity.Project;
+
+
+public interface ProjectRepository extends CrudRepository<Project, Integer> {
+
 }
