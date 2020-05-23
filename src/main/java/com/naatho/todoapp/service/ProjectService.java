@@ -2,6 +2,7 @@ package com.naatho.todoapp.service;
 
 import com.naatho.todoapp.entity.Project;
 import com.naatho.todoapp.repository.ProjectRepository;
+import com.naatho.todoapp.repository.ReminderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
