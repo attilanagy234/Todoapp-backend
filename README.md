@@ -11,6 +11,8 @@ Csapattagok Neptun kóddal:
 ## SETUP
 
 ### Needed to setup in IntelliJ: Lombok plugin
+### Required java version: 11
+
 
 
 
