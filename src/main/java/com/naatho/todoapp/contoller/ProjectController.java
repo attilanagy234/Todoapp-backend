@@ -18,24 +18,24 @@ public class ProjectController {
     @PostMapping()
     public @ResponseBody
     String addNewProject (@RequestBody Project project) {
-        ProjectService.save(project);
+        projectService.save(project);
         return "Saved";
     }
 
     @GetMapping()
     public @ResponseBody Iterable<Project> getAllProjects() {
-        return ProjectService.findAll();
+        return projectService.findAll();
     }
 
     @GetMapping(path="/{id}")
     public @ResponseBody
     Optional<Project> getProjectByID(@PathVariable Integer id) {
-        return ProjectService.findById(id);
+        return projectService.findById(id);
     }
 
     @DeleteMapping(path="/{id}")
     public @ResponseBody
     void deleteProjectById(@PathVariable Integer id) {
-        ProjectService.deleteById(id);
+        projectService.deleteById(id);
     }
 }
