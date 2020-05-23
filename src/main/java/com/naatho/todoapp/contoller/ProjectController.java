@@ -1,7 +1,7 @@
 package com.naatho.todoapp.contoller;
 
 import com.naatho.todoapp.entity.Project;
-import com.naatho.todoapp.repository.ProjectRepository;
+import com.naatho.todoapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,29 +13,29 @@ import java.util.Optional;
 public class ProjectController {
     // Dependency injection
     @Autowired
-    private ProjectRepository projectRepository;
+    private ProjectService projectService;
 
     @PostMapping()
     public @ResponseBody
     String addNewProject (@RequestBody Project project) {
-        projectRepository.save(project);
+        ProjectService.save(project);
         return "Saved";
     }
 
     @GetMapping()
     public @ResponseBody Iterable<Project> getAllProjects() {
-        return projectRepository.findAll();
+        return ProjectService.findAll();
     }
 
     @GetMapping(path="/{id}")
     public @ResponseBody
     Optional<Project> getProjectByID(@PathVariable Integer id) {
-        return projectRepository.findById(id);
+        return ProjectService.findById(id);
     }
 
     @DeleteMapping(path="/{id}")
     public @ResponseBody
     void deleteProjectById(@PathVariable Integer id) {
-        projectRepository.deleteById(id);
+        ProjectService.deleteById(id);
     }
 }
