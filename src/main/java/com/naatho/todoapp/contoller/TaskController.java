@@ -43,4 +43,14 @@ public class TaskController {
     public void addLabelToTask(@PathVariable Integer taskId, @PathVariable String labelId) throws Exception {
         taskRepository.addLabelToTask(labelId, taskId);
     }
+
+    @PutMapping(path="/{id}")
+    public @ResponseBody
+    Optional<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) {
+        Optional<Task> foundTask = taskRepository.findById(id);
+        foundTask.get().setDescription(task.getDescription());
+        foundTask.get().setName(task.getName());
+        taskRepository.save(foundTask.get());
+        return foundTask;
+    }
 }
