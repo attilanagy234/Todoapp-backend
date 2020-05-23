@@ -24,4 +24,6 @@ public class Task {
     @ManyToMany
     private Set<Label> labels;
 
+    @OneToMany
+    private Set<Reminder> reminders;
 }
