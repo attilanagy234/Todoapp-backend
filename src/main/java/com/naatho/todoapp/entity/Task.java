@@ -21,4 +21,7 @@ public class Task {
     @ManyToOne
     private Project project;
 
+    @ManyToMany
+    private Set<Label> labels;
+
 }
