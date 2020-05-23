@@ -11,6 +11,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping(path="/projects")
 public class ProjectController {
+
     // Dependency injection
     @Autowired
     private ProjectService projectService;

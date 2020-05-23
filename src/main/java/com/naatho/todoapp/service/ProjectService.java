@@ -1,6 +1,5 @@
 package com.naatho.todoapp.service;
 
-import com.naatho.todoapp.entity.Label;
 import com.naatho.todoapp.entity.Project;
 import com.naatho.todoapp.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
