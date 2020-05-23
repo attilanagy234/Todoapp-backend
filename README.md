@@ -10,6 +10,8 @@
  
  The DB volume is mounted to ./database so it can remain persistent locally.
 
+### Testing the REST API
+[Postman](https://www.postman.com/) is awesome.
 
 ---
 **Házi feladat**
