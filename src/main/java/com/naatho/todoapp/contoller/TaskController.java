@@ -38,4 +38,9 @@ public class TaskController {
     void deleteTaskById(@PathVariable Integer id) {
         taskRepository.deleteById(id);
     }
+
+    @PutMapping(path="/{taskId}/label/{labelId}")
+    public void addLabelToTask(@PathVariable Integer taskId, @PathVariable String labelId) throws Exception {
+        taskRepository.addLabelToTask(labelId, taskId);
+    }
 }
