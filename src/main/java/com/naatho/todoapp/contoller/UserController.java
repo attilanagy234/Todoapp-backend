@@ -2,6 +2,9 @@ package com.naatho.todoapp.contoller;
 
 import com.naatho.todoapp.entity.User;
 import com.naatho.todoapp.repository.UserRepository;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +18,16 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
+
     @PostMapping()
     public @ResponseBody
-    String addNewUser (@RequestParam String name
-            , @RequestParam String email) {
+    String addNewUser (@RequestBody User newUser) {
 
-        User n = new User();
-        n.setName(name);
-        n.setEmail(email);
-        userRepository.save(n);
+        userRepository.save(newUser);
+
+        logger.info("User saved: {}", newUser.getName());
         return "Saved";
     }
 
