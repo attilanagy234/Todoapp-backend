@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -14,10 +15,10 @@ public class Task {
     private Integer id;
     private String name;
     private String description;
-    private 
+    private Date deadline;
 
     @NotNull
-    @ManyToMany
-    private Set<User> users;
+    @ManyToOne
+    private Project project;
 
 }

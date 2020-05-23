@@ -19,4 +19,7 @@ public class Project {
     @ManyToMany
     private Set<User> users;
 
+    @OneToMany
+    private Set<Task> tasks;
+
 }
