@@ -2,6 +2,7 @@ package com.naatho.todoapp.contoller;
 
 import com.naatho.todoapp.entity.User;
 import com.naatho.todoapp.repository.UserRepository;
+import com.naatho.todoapp.service.UserService;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +15,10 @@ import java.util.Optional;
 @Controller
 @RequestMapping(path="/users")
 public class UserController {
+
     // Dependency injection
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -25,7 +27,7 @@ public class UserController {
     public @ResponseBody
     String addNewUser (@RequestBody User newUser) {
 
-        userRepository.save(newUser);
+        userService.save(newUser);
 
         logger.info("User saved: {}", newUser.getName());
         return "Saved";
@@ -33,18 +35,18 @@ public class UserController {
 
     @GetMapping()
     public @ResponseBody Iterable<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @GetMapping(path="/{id}")
     public @ResponseBody
     Optional<User> getUserByID(@PathVariable Integer id) {
-        return userRepository.findById(id);
+        return userService.findById(id);
     }
 
     @DeleteMapping(path="/{id}")
     public @ResponseBody
     void deleteUserById(@PathVariable Integer id) {
-        userRepository.deleteById(id);
+        userService.deleteById(id);
     }
 }
