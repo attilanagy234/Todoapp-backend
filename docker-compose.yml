@@ -1,0 +1,13 @@
+version: "2"
+services:
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=todoapp
+      - MYSQL_USER=todoapp
+      - MYSQL_PASSWORD=complicatedpassword
+    ports:
+    - 3306:3306
+    volumes:
+    - ./database:/var/lib/mysql
