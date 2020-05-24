@@ -16,6 +16,6 @@ public class Reminder {
 
     private String reminderMessage;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Task task;
 }
