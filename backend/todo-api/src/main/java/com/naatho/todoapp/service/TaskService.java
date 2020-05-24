@@ -8,6 +8,7 @@ import com.naatho.todoapp.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,7 +36,7 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public Iterable<Task> findAll() {
+    public List<Task> findAll() {
         return taskRepository.findAll();
     }
 

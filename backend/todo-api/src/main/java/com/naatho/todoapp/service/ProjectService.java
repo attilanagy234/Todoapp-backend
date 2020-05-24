@@ -6,6 +6,7 @@ import com.naatho.todoapp.repository.ReminderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,7 +19,7 @@ public class ProjectService {
         projectRepository.save(project);
     }
 
-    public Iterable<Project> findAll() {
+    public List<Project> findAll() {
         return projectRepository.findAll();
     }
 

@@ -5,6 +5,7 @@ import com.naatho.todoapp.repository.LabelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,7 +18,7 @@ public class LabelService {
         labelRepository.save(label);
     }
 
-    public Iterable<Label> findAll() {
+    public List<Label> findAll() {
         return labelRepository.findAll();
     }
 
