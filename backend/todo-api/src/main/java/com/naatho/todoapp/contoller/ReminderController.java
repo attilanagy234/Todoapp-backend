@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path="/projects")
+@RequestMapping(path="/reminders")
 public class ReminderController {
 
     // Dependency injection

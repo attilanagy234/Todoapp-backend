@@ -32,3 +32,5 @@ out/
 .vscode/
 
 database
+
+.DS_Store
