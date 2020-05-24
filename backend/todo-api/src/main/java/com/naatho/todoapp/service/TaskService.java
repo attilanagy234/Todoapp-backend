@@ -49,19 +49,20 @@ public class TaskService {
     }
 
     public Optional<Task> updateTask(Integer id, Task task) throws Exception {
-        //TODO: Gotta get the actual user here!!!
-        User user = new User();
-
-        //TODO: Verify that this actually works:
-        // ? : are the equals/hashcode methods implemented correctly
-        if (!task.getProject().getUsers().contains(user)) {
-            //TODO: proper exception handling
-            throw new Exception("Unauthorized");
-        }
-        Optional<Task> foundTask = taskRepository.findById(id);
-        foundTask.get().setDescription(task.getDescription());
-        foundTask.get().setName(task.getName());
-        taskRepository.save(foundTask.get());
-        return foundTask;
+//        //TODO: Gotta get the actual user here!!!
+//        User user = new User();
+//
+//        //TODO: Verify that this actually works:
+//        // ? : are the equals/hashcode methods implemented correctly
+//        if (!task.getProject().getUsers().contains(user)) {
+//            //TODO: proper exception handling
+//            throw new Exception("Unauthorized");
+//        }
+//        Optional<Task> foundTask = taskRepository.findById(id);
+//        foundTask.get().setDescription(task.getDescription());
+//        foundTask.get().setName(task.getName());
+//        taskRepository.save(foundTask.get());
+//        return foundTask;
+        return Optional.empty();
     }
 }
