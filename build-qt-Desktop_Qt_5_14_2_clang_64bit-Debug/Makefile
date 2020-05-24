@@ -53,12 +53,16 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../qt/main.cpp \
-		../qt/mainwindow.cpp qrc_resources.cpp \
-		moc_mainwindow.cpp
+		../qt/mainwindow.cpp \
+		../qt/todowindow.cpp qrc_resources.cpp \
+		moc_mainwindow.cpp \
+		moc_todowindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		todowindow.o \
 		qrc_resources.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_todowindow.o
 DIST          = ../../../Qt/5.14.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.14.2/clang_64/mkspecs/qdevice.pri \
 		../../../Qt/5.14.2/clang_64/mkspecs/features/device_config.prf \
@@ -236,8 +240,10 @@ DIST          = ../../../Qt/5.14.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.14.2/clang_64/mkspecs/features/exceptions.prf \
 		../../../Qt/5.14.2/clang_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.14.2/clang_64/mkspecs/features/lex.prf \
-		../qt/qt.pro ../qt/mainwindow.h ../qt/main.cpp \
-		../qt/mainwindow.cpp
+		../qt/qt.pro ../qt/mainwindow.h \
+		../qt/todowindow.h ../qt/main.cpp \
+		../qt/mainwindow.cpp \
+		../qt/todowindow.cpp
 QMAKE_TARGET  = qt
 DESTDIR       = 
 TARGET        = qt.app/Contents/MacOS/qt
@@ -256,7 +262,7 @@ include /Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-qt.app/Contents/MacOS/qt: ui_mainwindow.h $(OBJECTS)  
+qt.app/Contents/MacOS/qt: ui_mainwindow.h ui_todowindow.h $(OBJECTS)  
 	@test -d qt.app/Contents/MacOS/ || mkdir -p qt.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -656,9 +662,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../qt/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.14.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.h ../qt/todowindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/main.cpp ../qt/mainwindow.cpp ../qt/todowindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/mainwindow.ui ../qt/todowindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -690,6 +696,8 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: ../qt/resources.qrc \
 		../../../Qt/5.14.2/clang_64/bin/rcc \
+		../qt/images/add.png \
+		../qt/images/remove.png \
 		../qt/images/user.png
 	/Users/adamatyi/Qt/5.14.2/clang_64/bin/rcc -name resources ../qt/resources.qrc -o qrc_resources.cpp
 
@@ -699,26 +707,50 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../../Qt/5.14.2/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.13 -Wall -Wextra -dM -E -o moc_predefs.h ../../../Qt/5.14.2/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_todowindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_todowindow.cpp
 moc_mainwindow.cpp: ../qt/mainwindow.h \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../qt/todowindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QStringListModel \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
 		moc_predefs.h \
 		../../../Qt/5.14.2/clang_64/bin/moc
 	/Users/adamatyi/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/adamatyi/repos/alf-hf-2020t-naatho/build-qt-Desktop_Qt_5_14_2_clang_64bit-Debug/moc_predefs.h -I/Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/adamatyi/repos/alf-hf-2020t-naatho/qt -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/adamatyi/Qt/5.14.2/clang_64/lib ../qt/mainwindow.h -o moc_mainwindow.cpp
+
+moc_todowindow.cpp: ../qt/todowindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QStringListModel \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		moc_predefs.h \
+		../../../Qt/5.14.2/clang_64/bin/moc
+	/Users/adamatyi/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/adamatyi/repos/alf-hf-2020t-naatho/build-qt-Desktop_Qt_5_14_2_clang_64bit-Debug/moc_predefs.h -I/Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/adamatyi/repos/alf-hf-2020t-naatho/qt -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/adamatyi/Qt/5.14.2/clang_64/lib ../qt/todowindow.h -o moc_todowindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_todowindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_todowindow.h
 ui_mainwindow.h: ../qt/mainwindow.ui \
 		../../../Qt/5.14.2/clang_64/bin/uic
 	/Users/adamatyi/Qt/5.14.2/clang_64/bin/uic ../qt/mainwindow.ui -o ui_mainwindow.h
+
+ui_todowindow.h: ../qt/todowindow.ui \
+		../../../Qt/5.14.2/clang_64/bin/uic
+	/Users/adamatyi/Qt/5.14.2/clang_64/bin/uic ../qt/todowindow.ui -o ui_todowindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -735,6 +767,13 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 main.o: ../qt/main.cpp ../qt/mainwindow.h \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../qt/todowindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QStringListModel \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QLabel \
@@ -744,14 +783,44 @@ main.o: ../qt/main.cpp ../qt/mainwindow.h \
 mainwindow.o: ../qt/mainwindow.cpp ../qt/mainwindow.h \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		ui_mainwindow.h
+		../qt/todowindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QStringListModel \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		ui_mainwindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../qt/mainwindow.cpp
+
+todowindow.o: ../qt/todowindow.cpp ../qt/todowindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QListView \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QStringListModel \
+		../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qstringlistmodel.h \
+		ui_todowindow.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QLabel \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QToolBar \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QBoxLayout \
+		../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o todowindow.o ../qt/todowindow.cpp
 
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_todowindow.o: moc_todowindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_todowindow.o moc_todowindow.cpp
 
 ####### Install
 

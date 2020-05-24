@@ -259,7 +259,7 @@ border-bottom:  1px solid white;
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/resources/images/user.png</normaloff>:/resources/images/user.png</iconset>
+      <normaloff>:/images/user.png</normaloff>:/images/user.png</iconset>
     </property>
     <property name="iconSize">
      <size>

@@ -156,7 +156,7 @@ public:
         toolButton->setObjectName(QString::fromUtf8("toolButton"));
         toolButton->setGeometry(QRect(520, 30, 141, 131));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/resources/images/user.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/images/user.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon);
         toolButton->setIconSize(QSize(60, 60));
         MainWindow->setCentralWidget(centralwidget);
