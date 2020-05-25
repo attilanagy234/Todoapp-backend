@@ -1,14 +1,16 @@
 package com.naatho.todoapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -20,21 +22,22 @@ public class User {
     @NotBlank
     private String email;
     @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ManyToMany
-    private Set<Project> projects;
+    private List<Project> projects;
 
     @ManyToMany
     private List<Role> roles;
 
+    @OneToMany(fetch=FetchType.LAZY)
+    private List<Task> assignedTasks;
 
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
-
-    public User() {}
 
 }
