@@ -27,6 +27,28 @@ private slots:
 
     void on_signOutpushButton_clicked();
 
+    void on_projectSavepushButton_clicked();
+
+    void on_projectUpdatepushButton_clicked();
+
+    void on_projectDeletepushButton_clicked();
+
+    void on_labelSavepushButton_clicked();
+
+    void on_labelUpdatepushButton_clicked();
+
+    void on_labelDeletepushButton_clicked();
+
+    void on_taskSavepushButton_clicked();
+
+    void on_taskUpdatepushButton_clicked();
+
+    void on_taskDeletepushButton_clicked();
+
+    void on_tableWidget_2_clicked(const QModelIndex &index);
+
+    void on_tableWidget_3_clicked(const QModelIndex &index);
+
 private:
     Ui::TodoWindow *ui;
 
