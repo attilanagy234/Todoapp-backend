@@ -49,6 +49,12 @@ private slots:
 
     void on_tableWidget_3_clicked(const QModelIndex &index);
 
+    void on_loadDatapushButton_1_clicked();
+
+    void on_loadDatapushButton_2_clicked();
+
+    void on_loadDatapushButton_3_clicked();
+
 private:
     Ui::TodoWindow *ui;
 

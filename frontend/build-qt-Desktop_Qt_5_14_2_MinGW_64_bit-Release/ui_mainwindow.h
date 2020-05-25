@@ -38,6 +38,7 @@ public:
     QLineEdit *registerPasswordLineEdit;
     QLineEdit *registerPasswordConfLineEdit;
     QPushButton *registerPushButton;
+    QLineEdit *registerNameLineEdit;
     QToolButton *toolButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -117,7 +118,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         loginFrame = new QFrame(centralwidget);
         loginFrame->setObjectName(QString::fromUtf8("loginFrame"));
-        loginFrame->setGeometry(QRect(100, 110, 1001, 401));
+        loginFrame->setGeometry(QRect(110, 70, 991, 481));
         loginFrame->setFrameShape(QFrame::StyledPanel);
         loginFrame->setFrameShadow(QFrame::Raised);
         loginLabel = new QLabel(loginFrame);
@@ -125,14 +126,14 @@ public:
         loginLabel->setGeometry(QRect(210, 30, 61, 41));
         signInPushButton = new QPushButton(loginFrame);
         signInPushButton->setObjectName(QString::fromUtf8("signInPushButton"));
-        signInPushButton->setGeometry(QRect(140, 310, 201, 41));
+        signInPushButton->setGeometry(QRect(140, 370, 201, 41));
         emailLineEdit = new QLineEdit(loginFrame);
         emailLineEdit->setObjectName(QString::fromUtf8("emailLineEdit"));
-        emailLineEdit->setGeometry(QRect(110, 100, 271, 31));
+        emailLineEdit->setGeometry(QRect(100, 180, 271, 31));
         emailLineEdit->setFocusPolicy(Qt::StrongFocus);
         passwordLineEdit = new QLineEdit(loginFrame);
         passwordLineEdit->setObjectName(QString::fromUtf8("passwordLineEdit"));
-        passwordLineEdit->setGeometry(QRect(110, 170, 271, 31));
+        passwordLineEdit->setGeometry(QRect(100, 230, 271, 31));
         passwordLineEdit->setEchoMode(QLineEdit::Password);
         registerLabel = new QLabel(loginFrame);
         registerLabel->setObjectName(QString::fromUtf8("registerLabel"));
@@ -143,18 +144,22 @@ public:
         registerEmailLineEdit->setFocusPolicy(Qt::StrongFocus);
         registerPasswordLineEdit = new QLineEdit(loginFrame);
         registerPasswordLineEdit->setObjectName(QString::fromUtf8("registerPasswordLineEdit"));
-        registerPasswordLineEdit->setGeometry(QRect(610, 170, 271, 31));
+        registerPasswordLineEdit->setGeometry(QRect(610, 240, 271, 31));
         registerPasswordLineEdit->setEchoMode(QLineEdit::Password);
         registerPasswordConfLineEdit = new QLineEdit(loginFrame);
         registerPasswordConfLineEdit->setObjectName(QString::fromUtf8("registerPasswordConfLineEdit"));
-        registerPasswordConfLineEdit->setGeometry(QRect(610, 240, 271, 31));
+        registerPasswordConfLineEdit->setGeometry(QRect(610, 310, 271, 31));
         registerPasswordConfLineEdit->setEchoMode(QLineEdit::Password);
         registerPushButton = new QPushButton(loginFrame);
         registerPushButton->setObjectName(QString::fromUtf8("registerPushButton"));
-        registerPushButton->setGeometry(QRect(650, 310, 201, 41));
+        registerPushButton->setGeometry(QRect(660, 370, 201, 41));
+        registerNameLineEdit = new QLineEdit(loginFrame);
+        registerNameLineEdit->setObjectName(QString::fromUtf8("registerNameLineEdit"));
+        registerNameLineEdit->setGeometry(QRect(610, 170, 271, 31));
+        registerNameLineEdit->setEchoMode(QLineEdit::Normal);
         toolButton = new QToolButton(centralwidget);
         toolButton->setObjectName(QString::fromUtf8("toolButton"));
-        toolButton->setGeometry(QRect(520, 30, 141, 131));
+        toolButton->setGeometry(QRect(520, 10, 141, 131));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/images/user.png"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon);
@@ -190,6 +195,8 @@ public:
         registerPasswordConfLineEdit->setText(QString());
         registerPasswordConfLineEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "confirm password", nullptr));
         registerPushButton->setText(QCoreApplication::translate("MainWindow", "Register", nullptr));
+        registerNameLineEdit->setText(QString());
+        registerNameLineEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "name", nullptr));
         toolButton->setText(QString());
     } // retranslateUi
 

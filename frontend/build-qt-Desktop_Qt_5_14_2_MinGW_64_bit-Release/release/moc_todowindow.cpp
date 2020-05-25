@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TodoWindow_t {
-    QByteArrayData data[20];
-    char stringdata0[508];
+    QByteArrayData data[23];
+    char stringdata0[604];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -51,7 +51,10 @@ QT_MOC_LITERAL(15, 364, 29), // "on_taskSavepushButton_clicked"
 QT_MOC_LITERAL(16, 394, 31), // "on_taskUpdatepushButton_clicked"
 QT_MOC_LITERAL(17, 426, 31), // "on_taskDeletepushButton_clicked"
 QT_MOC_LITERAL(18, 458, 24), // "on_tableWidget_2_clicked"
-QT_MOC_LITERAL(19, 483, 24) // "on_tableWidget_3_clicked"
+QT_MOC_LITERAL(19, 483, 24), // "on_tableWidget_3_clicked"
+QT_MOC_LITERAL(20, 508, 31), // "on_loadDatapushButton_1_clicked"
+QT_MOC_LITERAL(21, 540, 31), // "on_loadDatapushButton_2_clicked"
+QT_MOC_LITERAL(22, 572, 31) // "on_loadDatapushButton_3_clicked"
 
     },
     "TodoWindow\0on_savepushButton_clicked\0"
@@ -69,7 +72,10 @@ QT_MOC_LITERAL(19, 483, 24) // "on_tableWidget_3_clicked"
     "on_taskUpdatepushButton_clicked\0"
     "on_taskDeletepushButton_clicked\0"
     "on_tableWidget_2_clicked\0"
-    "on_tableWidget_3_clicked"
+    "on_tableWidget_3_clicked\0"
+    "on_loadDatapushButton_1_clicked\0"
+    "on_loadDatapushButton_2_clicked\0"
+    "on_loadDatapushButton_3_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -79,7 +85,7 @@ static const uint qt_meta_data_TodoWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -87,22 +93,25 @@ static const uint qt_meta_data_TodoWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   94,    2, 0x08 /* Private */,
-       3,    0,   95,    2, 0x08 /* Private */,
-       4,    0,   96,    2, 0x08 /* Private */,
-       5,    1,   97,    2, 0x08 /* Private */,
-       8,    0,  100,    2, 0x08 /* Private */,
-       9,    0,  101,    2, 0x08 /* Private */,
-      10,    0,  102,    2, 0x08 /* Private */,
-      11,    0,  103,    2, 0x08 /* Private */,
-      12,    0,  104,    2, 0x08 /* Private */,
-      13,    0,  105,    2, 0x08 /* Private */,
-      14,    0,  106,    2, 0x08 /* Private */,
-      15,    0,  107,    2, 0x08 /* Private */,
-      16,    0,  108,    2, 0x08 /* Private */,
-      17,    0,  109,    2, 0x08 /* Private */,
-      18,    1,  110,    2, 0x08 /* Private */,
-      19,    1,  113,    2, 0x08 /* Private */,
+       1,    0,  109,    2, 0x08 /* Private */,
+       3,    0,  110,    2, 0x08 /* Private */,
+       4,    0,  111,    2, 0x08 /* Private */,
+       5,    1,  112,    2, 0x08 /* Private */,
+       8,    0,  115,    2, 0x08 /* Private */,
+       9,    0,  116,    2, 0x08 /* Private */,
+      10,    0,  117,    2, 0x08 /* Private */,
+      11,    0,  118,    2, 0x08 /* Private */,
+      12,    0,  119,    2, 0x08 /* Private */,
+      13,    0,  120,    2, 0x08 /* Private */,
+      14,    0,  121,    2, 0x08 /* Private */,
+      15,    0,  122,    2, 0x08 /* Private */,
+      16,    0,  123,    2, 0x08 /* Private */,
+      17,    0,  124,    2, 0x08 /* Private */,
+      18,    1,  125,    2, 0x08 /* Private */,
+      19,    1,  128,    2, 0x08 /* Private */,
+      20,    0,  131,    2, 0x08 /* Private */,
+      21,    0,  132,    2, 0x08 /* Private */,
+      22,    0,  133,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -121,6 +130,9 @@ static const uint qt_meta_data_TodoWindow[] = {
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -147,6 +159,9 @@ void TodoWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->on_taskDeletepushButton_clicked(); break;
         case 14: _t->on_tableWidget_2_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 15: _t->on_tableWidget_3_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 16: _t->on_loadDatapushButton_1_clicked(); break;
+        case 17: _t->on_loadDatapushButton_2_clicked(); break;
+        case 18: _t->on_loadDatapushButton_3_clicked(); break;
         default: ;
         }
     }
@@ -181,13 +196,13 @@ int TodoWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 19;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 19)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 16;
+        _id -= 19;
     }
     return _id;
 }

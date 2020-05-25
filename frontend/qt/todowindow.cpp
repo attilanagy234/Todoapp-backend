@@ -168,3 +168,18 @@ void TodoWindow::on_tableWidget_3_clicked(const QModelIndex &index)
     ui->taskprojectlineEdit->setText(index.sibling(row, 2).data().toString());
     ui->tasklabellineEdit->setText(index.sibling(row, 2).data().toString());
 }
+
+void TodoWindow::on_loadDatapushButton_1_clicked()
+{
+
+}
+
+void TodoWindow::on_loadDatapushButton_2_clicked()
+{
+
+}
+
+void TodoWindow::on_loadDatapushButton_3_clicked()
+{
+
+}

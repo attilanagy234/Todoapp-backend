@@ -36,6 +36,7 @@ public:
     QPushButton *projectUpdatepushButton;
     QPushButton *projectDeletepushButton;
     QTableWidget *tableWidget;
+    QPushButton *loadDatapushButton_1;
     QWidget *tab_3;
     QTableWidget *tableWidget_2;
     QLabel *labelnamelabel;
@@ -43,6 +44,7 @@ public:
     QPushButton *labelSavepushButton;
     QPushButton *labelUpdatepushButton;
     QPushButton *labelDeletepushButton;
+    QPushButton *loadDatapushButton_2;
     QWidget *tab_2;
     QTableWidget *tableWidget_3;
     QLabel *tasknamelabel;
@@ -58,6 +60,7 @@ public:
     QPushButton *taskSavepushButton;
     QPushButton *taskUpdatepushButton;
     QPushButton *taskDeletepushButton;
+    QPushButton *loadDatapushButton_3;
 
     void setupUi(QWidget *TodoWindow)
     {
@@ -107,6 +110,9 @@ public:
         tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setGeometry(QRect(640, 30, 301, 401));
+        loadDatapushButton_1 = new QPushButton(tab);
+        loadDatapushButton_1->setObjectName(QString::fromUtf8("loadDatapushButton_1"));
+        loadDatapushButton_1->setGeometry(QRect(530, 400, 75, 23));
         tabWidget->addTab(tab, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
@@ -134,6 +140,9 @@ public:
         labelDeletepushButton = new QPushButton(tab_3);
         labelDeletepushButton->setObjectName(QString::fromUtf8("labelDeletepushButton"));
         labelDeletepushButton->setGeometry(QRect(440, 210, 75, 23));
+        loadDatapushButton_2 = new QPushButton(tab_3);
+        loadDatapushButton_2->setObjectName(QString::fromUtf8("loadDatapushButton_2"));
+        loadDatapushButton_2->setGeometry(QRect(570, 420, 75, 23));
         tabWidget->addTab(tab_3, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -193,11 +202,14 @@ public:
         taskDeletepushButton = new QPushButton(tab_2);
         taskDeletepushButton->setObjectName(QString::fromUtf8("taskDeletepushButton"));
         taskDeletepushButton->setGeometry(QRect(240, 320, 75, 23));
+        loadDatapushButton_3 = new QPushButton(tab_2);
+        loadDatapushButton_3->setObjectName(QString::fromUtf8("loadDatapushButton_3"));
+        loadDatapushButton_3->setGeometry(QRect(260, 430, 75, 23));
         tabWidget->addTab(tab_2, QString());
 
         retranslateUi(TodoWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(TodoWindow);
@@ -218,6 +230,7 @@ public:
         ___qtablewidgetitem1->setText(QCoreApplication::translate("TodoWindow", "Name", nullptr));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QCoreApplication::translate("TodoWindow", "Description", nullptr));
+        loadDatapushButton_1->setText(QCoreApplication::translate("TodoWindow", "Load Data", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("TodoWindow", "Projects", nullptr));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget_2->horizontalHeaderItem(0);
         ___qtablewidgetitem3->setText(QCoreApplication::translate("TodoWindow", "id", nullptr));
@@ -227,6 +240,7 @@ public:
         labelSavepushButton->setText(QCoreApplication::translate("TodoWindow", "Save", nullptr));
         labelUpdatepushButton->setText(QCoreApplication::translate("TodoWindow", "Update", nullptr));
         labelDeletepushButton->setText(QCoreApplication::translate("TodoWindow", "Delete", nullptr));
+        loadDatapushButton_2->setText(QCoreApplication::translate("TodoWindow", "Load Data", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("TodoWindow", "Labels", nullptr));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget_3->horizontalHeaderItem(0);
         ___qtablewidgetitem5->setText(QCoreApplication::translate("TodoWindow", "id", nullptr));
@@ -248,6 +262,7 @@ public:
         taskSavepushButton->setText(QCoreApplication::translate("TodoWindow", "Save", nullptr));
         taskUpdatepushButton->setText(QCoreApplication::translate("TodoWindow", "Update", nullptr));
         taskDeletepushButton->setText(QCoreApplication::translate("TodoWindow", "Delete", nullptr));
+        loadDatapushButton_3->setText(QCoreApplication::translate("TodoWindow", "Load Data", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("TodoWindow", "Tasks", nullptr));
     } // retranslateUi
 
