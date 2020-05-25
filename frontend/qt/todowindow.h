@@ -19,16 +19,17 @@ public:
 private slots:
     void on_savepushButton_clicked();
 
-
-
     void on_deletepushButton_clicked();
 
     void on_updatepushButton_clicked();
 
     void on_tableWidget_clicked(const QModelIndex &index);
 
+    void on_signOutpushButton_clicked();
+
 private:
     Ui::TodoWindow *ui;
+
 };
 
 #endif // TODOWINDOW_H

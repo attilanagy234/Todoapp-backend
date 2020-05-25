@@ -160,6 +160,19 @@
      <string>Delete</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="signOutpushButton">
+    <property name="geometry">
+     <rect>
+      <x>844</x>
+      <y>490</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sign Out</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

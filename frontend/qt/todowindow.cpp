@@ -1,5 +1,6 @@
 #include "todowindow.h"
 #include "ui_todowindow.h"
+#include "mainwindow.h"
 
 TodoWindow::TodoWindow(QWidget *parent) :
     QWidget(parent),
@@ -56,4 +57,9 @@ void TodoWindow::on_tableWidget_clicked(const QModelIndex &index)
     ui->projectnamelineEdit->setText(index.sibling(row, 1).data().toString());
     ui->textlineEdit->setText(index.sibling(row, 2).data().toString());
     ui->reminderlineEdit->setText(index.sibling(row, 3).data().toString());
+}
+
+void TodoWindow::on_signOutpushButton_clicked()
+{
+    this->hide();
 }
