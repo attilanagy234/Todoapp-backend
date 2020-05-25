@@ -61,5 +61,5 @@ void TodoWindow::on_tableWidget_clicked(const QModelIndex &index)
 
 void TodoWindow::on_signOutpushButton_clicked()
 {
-    this->hide();
+    this->destroy();
 }

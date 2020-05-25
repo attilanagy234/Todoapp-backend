@@ -21,13 +21,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_signInPushButton_clicked()
 {
-//    TodoWindow todoWindow;
-//    todoWindow.setModal(true);
-//    todoWindow.exec();
     todoWindow = new TodoWindow();
     todoWindow->setWindowTitle("Todoz");
     todoWindow->setFixedSize(1200,600);
-    this->hide();
+//    this->hide();
     todoWindow->show();
-
 }
