@@ -31,6 +31,12 @@ out/
 ### VS Code ###
 .vscode/
 
+frontend/build-qt-Desktop_Qt_5_14_2_clang_64bit-Debug/
+frontend/build-qt-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/
+frontend/build-qt-Desktop_Qt_5_14_2_MinGW_64_bit-Release/
+frontend/build-qt-Desktop_x86_darwin_generic_mach_o_64bit-Debug/
+build-qt-Desktop_Qt_5_14_2_clang_64bit-Debug/
+
 database
 
 .DS_Store

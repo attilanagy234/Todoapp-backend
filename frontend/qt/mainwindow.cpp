@@ -2,7 +2,10 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include "todowindow.h"
-#include <QTableWidget>
+#include <QJsonDocument>
+#include <QJsonValue>
+#include <QJsonArray>
+#include <QJsonObject>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -35,7 +38,10 @@ void MainWindow::post(QString location, QByteArray data)
 {
     qInfo() << "Posting to server...";
     QNetworkRequest request = QNetworkRequest(QUrl(location));
-    request.setHeader(QNetworkRequest::ContentTypeHeader,"text/plain");
+    request.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");
+//    request.setHeader(QNetworkRequest::ContentTypeHeader,QStringLiteral("Content-Type: application/json; charset=utf-8"));
+//    request.setHeader(QNetworkRequest::ContentTypeHeader,"application/raw");
+
 
     QNetworkReply* reply = manager.post(request, data);
     connect(reply,&QNetworkReply::readyRead,this,&MainWindow::readyRead);
@@ -48,6 +54,7 @@ void MainWindow::on_signInPushButton_clicked()
     todoWindow = new TodoWindow();
     todoWindow->setWindowTitle("Todoz");
     todoWindow->setFixedSize(1200,600);
+    this->get("https://postman-echo.com/get?foo1=bar1&foo2=bar2");
 //    this->hide();
     todoWindow->show();
 }
@@ -100,4 +107,27 @@ void MainWindow::sslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
 {
     qInfo() << "sslErrors";
 
+}
+
+void MainWindow::on_registerPushButton_clicked()
+{
+    QString location = "localhost:8080/register";
+    QJsonObject obj;
+    QString emailString = ui->registerEmailLineEdit->text();
+    QString nameString = ui->registerNameLineEdit->text();
+    QString passwordString = ui->registerPasswordLineEdit->text();
+    obj["name"] = nameString;
+    obj["email"] = emailString;
+    obj["password"] = passwordString;
+    QJsonDocument doc(obj);
+    QByteArray data = doc.toJson();
+    this->post(location, data);
+//    QJsonObject json;
+//    json.insert("username", nameString);
+//    json.insert("email", emailString);
+//    json.insert("password", passwordString);
+//    QJsonDocument jsonDoc(obj2);
+//    QByteArray jsonData = jsonDoc.toJson();
+//    this->post(location, jsonData);
+//    this->post(location, QJsonDocument(obj2).toJson());
 }

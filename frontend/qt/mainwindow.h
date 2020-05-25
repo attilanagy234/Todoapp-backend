@@ -41,6 +41,8 @@ private slots:
     void proxyAuthenticationRequired(const QNetworkProxy &proxy, QAuthenticator *authenticator);
     void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
 
+    void on_registerPushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     TodoWindow *todoWindow;

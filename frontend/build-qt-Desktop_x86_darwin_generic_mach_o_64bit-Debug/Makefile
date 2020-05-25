@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.13 -Wall -Wextra -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.13 -Wall -Wextra -fPIC $(DEFINES)
-INCPATH       = -I../qt -I. -I../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang -F/Users/adamatyi/Qt/5.14.2/clang_64/lib
+INCPATH       = -I../qt -I. -I../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I../../../../Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I../../../../Qt/5.14.2/clang_64/lib/QtNetwork.framework/Headers -I../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang -F/Users/adamatyi/Qt/5.14.2/clang_64/lib
 QMAKE         = /Users/adamatyi/Qt/5.14.2/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = qt1.0.0
 DISTDIR = /Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/build-qt-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.tmp/qt1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -mmacosx-version-min=10.13 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/Users/adamatyi/Qt/5.14.2/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/adamatyi/Qt/5.14.2/clang_64/lib -framework QtWidgets -framework QtGui -framework AppKit -framework Metal -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
+LIBS          = $(SUBLIBS) -F/Users/adamatyi/Qt/5.14.2/clang_64/lib -framework QtWidgets -framework QtGui -framework AppKit -framework Metal -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -211,6 +211,7 @@ DIST          = ../../../../Qt/5.14.2/clang_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/spec_post.prf \
+		../qt/.qmake.stash \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/toolchain.prf \
@@ -413,6 +414,7 @@ Makefile: ../qt/qt.pro ../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.c
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.prf \
 		../../../../Qt/5.14.2/clang_64/mkspecs/features/toolchain.prf \
@@ -445,6 +447,7 @@ Makefile: ../qt/qt.pro ../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.c
 		../qt/resources.qrc \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Resources/QtWidgets.prl \
 		../../../../Qt/5.14.2/clang_64/lib/QtGui.framework/Resources/QtGui.prl \
+		../../../../Qt/5.14.2/clang_64/lib/QtNetwork.framework/Resources/QtNetwork.prl \
 		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Resources/QtCore.prl
 	$(QMAKE) -o Makefile ../qt/qt.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 ../../../../Qt/5.14.2/clang_64/mkspecs/features/spec_pre.prf:
@@ -595,6 +598,7 @@ Makefile: ../qt/qt.pro ../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.c
 ../../../../Qt/5.14.2/clang_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.conf:
 ../../../../Qt/5.14.2/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.14.2/clang_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.prf:
 ../../../../Qt/5.14.2/clang_64/mkspecs/features/toolchain.prf:
@@ -627,6 +631,7 @@ Makefile: ../qt/qt.pro ../../../../Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.c
 ../qt/resources.qrc:
 ../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Resources/QtWidgets.prl:
 ../../../../Qt/5.14.2/clang_64/lib/QtGui.framework/Resources/QtGui.prl:
+../../../../Qt/5.14.2/clang_64/lib/QtNetwork.framework/Resources/QtNetwork.prl:
 ../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Resources/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../qt/qt.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
@@ -708,6 +713,10 @@ compiler_moc_header_make_all: moc_mainwindow.cpp moc_todowindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_todowindow.cpp
 moc_mainwindow.cpp: ../qt/mainwindow.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../qt/todowindow.h \
@@ -717,7 +726,7 @@ moc_mainwindow.cpp: ../qt/mainwindow.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
 		moc_predefs.h \
 		../../../../Qt/5.14.2/clang_64/bin/moc
-	/Users/adamatyi/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/build-qt-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/qt -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/adamatyi/Qt/5.14.2/clang_64/lib ../qt/mainwindow.h -o moc_mainwindow.cpp
+	/Users/adamatyi/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/build-qt-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/qt -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtNetwork.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/adamatyi/Qt/5.14.2/clang_64/lib ../qt/mainwindow.h -o moc_mainwindow.cpp
 
 moc_todowindow.cpp: ../qt/todowindow.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QWidget \
@@ -726,7 +735,7 @@ moc_todowindow.cpp: ../qt/todowindow.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
 		moc_predefs.h \
 		../../../../Qt/5.14.2/clang_64/bin/moc
-	/Users/adamatyi/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/build-qt-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/qt -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/adamatyi/Qt/5.14.2/clang_64/lib ../qt/todowindow.h -o moc_todowindow.cpp
+	/Users/adamatyi/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/build-qt-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/Users/adamatyi/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/adamatyi/repos/alf-hf-2020t-naatho/frontend/qt -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtNetwork.framework/Headers -I/Users/adamatyi/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/adamatyi/Qt/5.14.2/clang_64/lib ../qt/todowindow.h -o moc_todowindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -756,6 +765,10 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 ####### Compile
 
 main.o: ../qt/main.cpp ../qt/mainwindow.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../qt/todowindow.h \
@@ -770,6 +783,10 @@ main.o: ../qt/main.cpp ../qt/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qt/main.cpp
 
 mainwindow.o: ../qt/mainwindow.cpp ../qt/mainwindow.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		../qt/todowindow.h \
@@ -789,6 +806,10 @@ todowindow.o: ../qt/todowindow.cpp ../qt/todowindow.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
 		ui_todowindow.h \
 		../qt/mainwindow.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QObject \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../../../Qt/5.14.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../../../Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o todowindow.o ../qt/todowindow.cpp
