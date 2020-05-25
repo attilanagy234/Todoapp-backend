@@ -30,3 +30,30 @@ void TodoWindow::on_savepushButton_clicked()
     ui->tableWidget->setItem(project->row(), 2, text);
     ui->tableWidget->setItem(text->row(), 3, reminder);
 }
+
+void TodoWindow::on_deletepushButton_clicked()
+{
+    ui->tableWidget->removeRow(ui->tableWidget->currentRow());
+}
+
+void TodoWindow::on_updatepushButton_clicked()
+{
+    QString project = ui->projectnamelineEdit->text();
+    QString text = ui->textlineEdit->text();
+    QString reminder = ui->reminderlineEdit->text();
+
+    int currentRow = ui->tableWidget->currentRow();
+
+    ui->tableWidget->item(currentRow, 1)->setText(project);
+    ui->tableWidget->item(currentRow, 2)->setText(text);
+    ui->tableWidget->item(currentRow, 3)->setText(reminder);
+}
+
+void TodoWindow::on_tableWidget_clicked(const QModelIndex &index)
+{
+    int row = index.row();
+
+    ui->projectnamelineEdit->setText(index.sibling(row, 1).data().toString());
+    ui->textlineEdit->setText(index.sibling(row, 2).data().toString());
+    ui->reminderlineEdit->setText(index.sibling(row, 3).data().toString());
+}

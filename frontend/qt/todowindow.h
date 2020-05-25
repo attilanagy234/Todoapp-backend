@@ -21,6 +21,12 @@ private slots:
 
 
 
+    void on_deletepushButton_clicked();
+
+    void on_updatepushButton_clicked();
+
+    void on_tableWidget_clicked(const QModelIndex &index);
+
 private:
     Ui::TodoWindow *ui;
 };
