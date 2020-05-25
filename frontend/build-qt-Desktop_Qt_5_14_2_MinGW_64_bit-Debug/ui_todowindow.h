@@ -29,7 +29,7 @@ public:
     QLabel *reminderlabel;
     QLineEdit *projectnamelineEdit;
     QLineEdit *textlineEdit;
-    QLineEdit *textlineEdit_2;
+    QLineEdit *reminderlineEdit;
     QTableWidget *tableWidget;
     QPushButton *savepushButton;
     QPushButton *updatepushButton;
@@ -58,9 +58,9 @@ public:
         textlineEdit = new QLineEdit(widget);
         textlineEdit->setObjectName(QString::fromUtf8("textlineEdit"));
         textlineEdit->setGeometry(QRect(190, 180, 151, 21));
-        textlineEdit_2 = new QLineEdit(widget);
-        textlineEdit_2->setObjectName(QString::fromUtf8("textlineEdit_2"));
-        textlineEdit_2->setGeometry(QRect(190, 230, 151, 21));
+        reminderlineEdit = new QLineEdit(widget);
+        reminderlineEdit->setObjectName(QString::fromUtf8("reminderlineEdit"));
+        reminderlineEdit->setGeometry(QRect(190, 230, 151, 21));
         tableWidget = new QTableWidget(widget);
         if (tableWidget->columnCount() < 4)
             tableWidget->setColumnCount(4);
