@@ -1,7 +1,9 @@
 package com.naatho.todoapp.utils;
 
+import com.naatho.todoapp.common.Notification;
 import com.naatho.todoapp.entity.Task;
 import com.naatho.todoapp.service.TaskService;
+import org.aspectj.weaver.ast.Not;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +29,16 @@ public class ReminderScheduler {
     private String topic;
 
     @Autowired
-    private KafkaTemplate<String, Task> kafkaTemplate;
+    private KafkaTemplate<String, Notification> kafkaTemplate;
 
     @Transactional
     @Scheduled(fixedRate = 1000)
     public void scheduleTask() {
         List<Task> tasksToRemind = taskService.getTasksToRemind();
         for (Task task : tasksToRemind) {
-             logger.info("Found the following tasks to send reminders for name: {} id: {}", task.getName(), task.getId());
-             kafkaTemplate.send(topic, task);
+            logger.info("Found the following tasks to send reminders for name: {} id: {}", task.getName(), task.getId());
+            Notification notification = new Notification(task.getAssignee().getName(), task.getAssignee().getEmail(), task.getName(), "DO YOU TASK BRO!");
+            kafkaTemplate.send(topic, notification);
             task.setReminderTriggered(true);
             task.setReminder(null);
         }

@@ -1,22 +1,24 @@
 package com.naatho.todoapp.common;
 
 public class Notification {
-    String name;
+    String username;
     String email;
     String text;
+    String taskName;
 
-    public Notification(String name, String email, String text) {
-        this.name = name;
+    public Notification(String username, String email, String taskName, String text) {
+        this.username = username;
         this.email = email;
         this.text = text;
+        this.taskName = taskName;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getEmail() {
@@ -34,4 +36,14 @@ public class Notification {
     public void setText(String text) {
         this.text = text;
     }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
 }
+

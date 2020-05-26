@@ -1,5 +1,6 @@
 package com.naatho.todoapp.config;
 
+import com.naatho.todoapp.common.Notification;
 import com.naatho.todoapp.entity.Task;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -22,7 +23,7 @@ public class KafkaProducerConfiguration {
     private String bootstrapServers;
 
     @Bean
-    public ProducerFactory<String, Task> producerFactory() {
+    public ProducerFactory<String, Notification> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -32,7 +33,7 @@ public class KafkaProducerConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, Task> kafkaTemplate() {
+    public KafkaTemplate<String, Notification> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }
