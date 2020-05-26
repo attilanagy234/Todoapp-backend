@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -36,6 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {LabelController.class})
 @WebMvcTest(value = LabelController.class)
+@AutoConfigureMockMvc(addFilters = false)
 public class LabelControllerTest {
 
     @Autowired
@@ -52,7 +54,6 @@ public class LabelControllerTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         t = new Task();
-        labelService = new LabelService();
     }
 
     @Test
@@ -61,9 +62,9 @@ public class LabelControllerTest {
         Label l2 = new Label();
         given(labelService.findAll()).willReturn(Arrays.asList(l1, l2));
 
-//        mvc.perform(get(root)
-//                    .contentType(MediaType.APPLICATION_JSON))
-//                    .andExpect(status().isOk());
+        mvc.perform(get(root)
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
     }
 
     @Test
