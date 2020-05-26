@@ -22,7 +22,6 @@ public class Project {
 
     private String description;
 
-    @NotNull
     @ManyToMany
     private List<User> members;
 
