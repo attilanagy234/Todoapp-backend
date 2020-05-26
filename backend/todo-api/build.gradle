@@ -13,6 +13,7 @@ sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
+    jcenter {url "http://oss.jfrog.org/artifactory/oss-snapshot-local/"}
 }
 
 ext {
@@ -33,6 +34,9 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    implementation 'io.springfox:springfox-swagger2:3.0.0-SNAPSHOT'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'io.springfox:springfox-data-rest:3.0.0-SNAPSHOT'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.security:spring-security-test'
     testCompile("junit:junit")
