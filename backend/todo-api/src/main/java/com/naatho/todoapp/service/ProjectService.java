@@ -19,7 +19,7 @@ public class ProjectService {
     Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
     public void save(Project project) {
-        logger.debug("Saving project ", project);
+        logger.debug("Saving project {}", project);
         projectRepository.save(project);
     }
 
