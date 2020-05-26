@@ -44,10 +44,11 @@ public class DemoDataCreator {
     public void init() {
         // Custom logic to check if DB is already populated with dummy data
         User adminUser = userRepository.findByEmail(ADMIN_EMAIL);
+        logger.info("Stepped into init");
         if (adminUser == null) {
             logger.info("Filling DB with some dummy data");
-            Privilege projectManagement = new Privilege("PROJECT_MANAGEMENT");
-            Privilege userManagement = new Privilege("USER_MANAGEMENT");
+            Privilege projectManagement = new Privilege(Privilege.PROJECT_MANAGEMENT);
+            Privilege userManagement = new Privilege(Privilege.USER_MANAGEMENT);
             privilegeRepository.saveAll(Arrays.asList(projectManagement, userManagement));
 
             Role userRole = new Role(Role.USER_ROLE);
