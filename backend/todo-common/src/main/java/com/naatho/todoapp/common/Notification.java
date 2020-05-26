@@ -40,6 +40,10 @@ public class Notification {
     public String getTaskName() {
         return taskName;
     }
+    @Override
+    public String toString() {
+        return "Notification(email=" + this.email + ")";
+    }
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;

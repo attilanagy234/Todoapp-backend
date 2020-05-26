@@ -10,11 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Component
 @Lazy(false)
@@ -33,12 +37,28 @@ public class ReminderScheduler {
 
     @Transactional
     @Scheduled(fixedRate = 1000)
-    public void scheduleTask() {
+    public void scheduleTask() throws ExecutionException, InterruptedException {
         List<Task> tasksToRemind = taskService.getTasksToRemind();
         for (Task task : tasksToRemind) {
             logger.info("Found the following tasks to send reminders for name: {} id: {}", task.getName(), task.getId());
-            Notification notification = new Notification(task.getAssignee().getName(), task.getAssignee().getEmail(), task.getName(), "DO YOU TASK BRO!");
-            kafkaTemplate.send(topic, notification);
+            Notification notification = new Notification(task.getAssignee().getName(), task.getAssignee().getEmail(), task.getName(), "DO YOUR TASK BRO!");
+            ListenableFuture<SendResult<String, Notification>> future =  kafkaTemplate.send(topic, notification);
+
+            future.addCallback(new ListenableFutureCallback<>() {
+
+                @Override
+                public void onSuccess(SendResult<String, Notification> result) {
+                    logger.debug("Sent message=[{}] with offset=[{}]", notification, result.getRecordMetadata().offset());
+                }
+
+                @Override
+                public void onFailure(Throwable ex) {
+                    logger.debug("Unable to send message=[{}] due to=[{}]", notification, ex.getMessage());
+                }
+            });
+
+
+
             task.setReminderTriggered(true);
             task.setReminder(null);
         }
