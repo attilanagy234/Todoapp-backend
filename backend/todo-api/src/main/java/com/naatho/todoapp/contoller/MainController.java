@@ -36,8 +36,10 @@ public class MainController {
         User foundUser = userService.findByEmail(user.getEmail());
 
         if (foundUser != null) {
+            logger.info("User with that email is already in the system");
             return ResponseEntity.unprocessableEntity().build();
         }
+        logger.info("Creating new user...");
         User newUser = new User(
                 user.getName(),
                 user.getEmail(),
@@ -46,7 +48,9 @@ public class MainController {
         );
         newUser.setRoles(Arrays.asList(roleService.findByName(Role.USER_ROLE)));
         userService.save(newUser);
+        logger.debug("Saved user");
         ResponseEntity<User> response = ResponseEntity.ok(newUser);
+        logger.debug("Respose after creating user: {} ", response);
         return response;
     }
 

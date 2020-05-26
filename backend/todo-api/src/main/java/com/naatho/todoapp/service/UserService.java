@@ -27,19 +27,22 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
     }
 
+//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public void deleteById(Integer id) {
         userRepository.deleteById(id);
     }
 
+//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
