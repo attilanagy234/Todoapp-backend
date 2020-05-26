@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Data
@@ -18,9 +19,13 @@ public class User {
     private Integer id;
 
     @NotBlank
+    @Pattern(regexp = "^[\\p{L} .'-]+$") //Better than something like [A-Z][a-z], because names could have some strange chars. This allows unicode.
     private String name;
+
     @NotBlank
+    @Pattern(regexp = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
     private String email;
+
     @NotBlank
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;

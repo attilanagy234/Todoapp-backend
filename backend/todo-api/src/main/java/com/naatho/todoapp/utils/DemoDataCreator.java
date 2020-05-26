@@ -41,7 +41,7 @@ public class DemoDataCreator implements ApplicationRunner {
     Logger logger = LoggerFactory.getLogger(DemoDataCreator.class);
 
     @Override
-    public void run(ApplicationArguments args) {
+    public void run(ApplicationArguments args) throws Exception {
         // Custom logic to check if DB is already populated with dummy data
         User adminUser = userRepository.findByEmail(ADMIN_EMAIL);
         logger.trace("Stepped into init");
