@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -22,7 +23,7 @@ public class LabelController {
 
     @PostMapping()
     public @ResponseBody
-    String addNewLabel (@RequestBody Label label) {
+    String addNewLabel (@Valid @RequestBody Label label) {
         labelService.save(label);
         return "Saved";
     }

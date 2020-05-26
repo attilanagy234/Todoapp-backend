@@ -1,11 +1,14 @@
 package com.naatho.todoapp.contoller;
 
+import com.naatho.todoapp.entity.Label;
 import com.naatho.todoapp.entity.Task;
 import com.naatho.todoapp.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -18,7 +21,8 @@ public class TaskController {
 
     @PostMapping()
     public @ResponseBody
-    String addNewTask (@RequestBody Task task) {
+    String addNewTask (@Valid @RequestBody Task task) {
+        // Convention: successful create returns HTTP:201
         taskService.save(task);
         return "Saved";
     }
@@ -30,8 +34,14 @@ public class TaskController {
 
     @GetMapping(path="/{id}")
     public @ResponseBody
-    Optional<Task> getTaskByID(@PathVariable Integer id) {
-        return taskService.findById(id);
+    ResponseEntity<Task> getTaskByID(@PathVariable Integer id) {
+        Optional<Task> foundTask = taskService.findById(id);
+        if (foundTask.isEmpty()) {
+            return ResponseEntity.notFound().build();
+
+        } else {
+            return ResponseEntity.ok(foundTask.get());
+        }
     }
 
     @DeleteMapping(path="/{id}")
