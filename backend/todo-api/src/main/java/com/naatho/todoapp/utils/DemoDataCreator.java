@@ -5,15 +5,16 @@ import com.naatho.todoapp.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.Date;
 
 @Component
-public class DemoDataCreator {
+public class DemoDataCreator implements ApplicationRunner {
 
     public static final String ADMIN_EMAIL = "admin@gmail.com";
     @Autowired
@@ -39,12 +40,11 @@ public class DemoDataCreator {
 
     Logger logger = LoggerFactory.getLogger(DemoDataCreator.class);
 
-
-    @PostConstruct
-    public void init() {
+    @Override
+    public void run(ApplicationArguments args) {
         // Custom logic to check if DB is already populated with dummy data
         User adminUser = userRepository.findByEmail(ADMIN_EMAIL);
-        logger.info("Stepped into init");
+        logger.trace("Stepped into init");
         if (adminUser == null) {
             logger.info("Filling DB with some dummy data");
             Privilege projectManagement = new Privilege(Privilege.PROJECT_MANAGEMENT);
