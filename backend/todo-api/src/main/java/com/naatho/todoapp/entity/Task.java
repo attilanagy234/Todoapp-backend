@@ -56,7 +56,7 @@ public class Task {
         this.description = description;
         // validate that deadline is in future
         Date now = new Date(System.currentTimeMillis());
-        if (deadline.compareTo(now) < 0) {
+        if (deadline.compareTo(now) > 0) {
             // compareTo: Returns:
             //the value 0 if the argument Date is equal to this Date;
             // a value less than 0 if this Date is before the Date argument;
