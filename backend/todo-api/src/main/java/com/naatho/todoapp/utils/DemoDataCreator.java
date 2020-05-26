@@ -2,15 +2,15 @@ package com.naatho.todoapp.utils;
 
 import com.naatho.todoapp.entity.*;
 import com.naatho.todoapp.repository.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @Component
 public class DemoDataCreator {
@@ -37,12 +37,15 @@ public class DemoDataCreator {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    Logger logger = LoggerFactory.getLogger(DemoDataCreator.class);
+
 
     @PostConstruct
     public void init() {
         // Custom logic to check if DB is already populated with dummy data
         User adminUser = userRepository.findByEmail(ADMIN_EMAIL);
         if (adminUser == null) {
+            logger.info("Filling DB with some dummy data");
             Privilege projectManagement = new Privilege("PROJECT_MANAGEMENT");
             Privilege userManagement = new Privilege("USER_MANAGEMENT");
             privilegeRepository.saveAll(Arrays.asList(projectManagement, userManagement));
@@ -72,7 +75,8 @@ public class DemoDataCreator {
             Task backEndDev = new Task("Back end dev", backEndDeveloper, alkFejlProject, "Spring is great", new Date(2020, 6, 27), Arrays.asList(importantLabel));
             Task emailSender = new Task("Send email reminders", backEndDeveloper, alkFejlProject, "Use an SMTP server", new Date(2020, 6, 28), Arrays.asList(notImportantLabel));
             taskRepository.saveAll(Arrays.asList(frontEndDev, backEndDev, emailSender));
-
+        } else {
+            logger.info("The database already has data in it, so not populating it with more data");
         }
     }
 }
