@@ -10,6 +10,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -40,6 +44,7 @@ public class DemoDataCreator implements ApplicationRunner {
 
     Logger logger = LoggerFactory.getLogger(DemoDataCreator.class);
 
+    @Transactional
     @Override
     public void run(ApplicationArguments args) throws Exception {
         // Custom logic to check if DB is already populated with dummy data
@@ -72,9 +77,9 @@ public class DemoDataCreator implements ApplicationRunner {
             alkFejlProject.setMembers(Arrays.asList(frontEndDeveloper, backEndDeveloper));
             projectRepository.saveAll(Arrays.asList(alkFejlProject));
 
-            Task frontEndDev = new Task("Front end dev", frontEndDeveloper, alkFejlProject, "Qt is not so great", new Date(2020, 6, 26), Arrays.asList(importantLabel));
-            Task backEndDev = new Task("Back end dev", backEndDeveloper, alkFejlProject, "Spring is great", new Date(2020, 6, 27), Arrays.asList(importantLabel));
-            Task emailSender = new Task("Send email reminders", backEndDeveloper, alkFejlProject, "Use an SMTP server", new Date(2020, 6, 28), Arrays.asList(notImportantLabel));
+            Task frontEndDev = new Task("Front end dev", frontEndDeveloper, alkFejlProject, "Qt is not so great", LocalDateTime.of(2020, Month.MAY, 30, 0, 0, 0), Arrays.asList(importantLabel));
+            Task backEndDev = new Task("Back end dev", backEndDeveloper, alkFejlProject, "Spring is great", LocalDateTime.of(2020, Month.JULY, 25, 10, 0, 0), Arrays.asList(importantLabel));
+            Task emailSender = new Task("Send email reminders", backEndDeveloper, alkFejlProject, "Use an SMTP server", LocalDateTime.now().plusHours(1).plusSeconds(3), Arrays.asList(notImportantLabel));
             taskRepository.saveAll(Arrays.asList(frontEndDev, backEndDev, emailSender));
         } else {
             logger.info("The database already has data in it, so not populating it with more data");

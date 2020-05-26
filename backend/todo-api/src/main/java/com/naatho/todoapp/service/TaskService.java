@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +61,10 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
+    public void saveAll(List<Task> tasks) {
+        taskRepository.saveAll(tasks);
+    }
+
     public Optional<Task> updateTask(Integer id, Task task) throws Exception {
 //        //TODO: Gotta get the actual user here!!!
 //        User user = new User();
@@ -76,4 +82,9 @@ public class TaskService {
 //        return foundTask;
         return Optional.empty();
     }
+
+    public List<Task> getTasksToRemind() {
+        return taskRepository.findTasksByReminderTriggeredFalseAndReminderBefore(LocalDateTime.now());
+    }
+
 }

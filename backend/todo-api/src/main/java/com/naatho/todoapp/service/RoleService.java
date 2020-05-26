@@ -1,9 +1,6 @@
 package com.naatho.todoapp.service;
 
-import com.naatho.todoapp.contoller.MainController;
-import com.naatho.todoapp.entity.Project;
 import com.naatho.todoapp.entity.Role;
-import com.naatho.todoapp.repository.ReminderRepository;
 import com.naatho.todoapp.repository.RoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
