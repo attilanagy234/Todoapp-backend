@@ -34,25 +34,25 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public List<User> findAll() {
         logger.debug("Querying all users");
         return userRepository.findAll();
     }
 
-//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public Optional<User> findById(Integer id) {
         logger.debug("Searching for user by id {} ", id);
         return userRepository.findById(id);
     }
 
-//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public void deleteById(Integer id) {
         logger.debug("Attempting to delete user by id {}", id);
         userRepository.deleteById(id);
     }
 
-//    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public User findByEmail(String email) {
         logger.debug("Searching for user by email {}", email);
         return userRepository.findByEmail(email);
