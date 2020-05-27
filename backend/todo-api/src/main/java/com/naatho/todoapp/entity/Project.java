@@ -1,5 +1,6 @@
 package com.naatho.todoapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,6 +24,7 @@ public class Project {
     private String description;
 
     @ManyToMany
+    @JsonIgnore
     private List<User> members;
 
     @OneToMany(fetch=FetchType.LAZY)

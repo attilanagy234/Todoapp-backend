@@ -1,5 +1,7 @@
 package com.naatho.todoapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,9 +33,10 @@ public class User {
     private String password;
 
     @ManyToMany
+    @JsonIgnore
     private List<Project> projects;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.LAZY)
     private List<Role> roles;
 
     @OneToMany(fetch=FetchType.LAZY)

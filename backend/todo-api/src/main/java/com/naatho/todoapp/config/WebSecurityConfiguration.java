@@ -6,6 +6,7 @@ import com.naatho.todoapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -75,9 +76,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    @Lazy(false)
     public Module datatypeHibernateModule() {
         // Avoid JPA recursion fetching
-        return new Hibernate5Module();
+        Hibernate5Module hibernate = new Hibernate5Module();
+        hibernate.configure(Hibernate5Module.Feature.FORCE_LAZY_LOADING, true);
+
+        return hibernate;
     }
 
 }

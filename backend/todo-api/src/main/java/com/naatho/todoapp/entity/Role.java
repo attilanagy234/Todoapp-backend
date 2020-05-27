@@ -21,13 +21,14 @@ public class Role {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
+
     @NotBlank
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch=FetchType.LAZY)
     private List<User> users;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.LAZY)
     private List<Privilege> privileges = new ArrayList<>();
 
     public Role(String name) {
