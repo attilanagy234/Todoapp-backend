@@ -11,7 +11,7 @@ The backend components run in Docker. To spin them up, just run:
 cd backend/todo-api
 docker-compose up
 ```
-This will start an instance of a MySQL, Kafka and Zookeeper.
+This will start an instance of MySQL, Kafka and Zookeeper.
 
 The MySQL volume is mounted to ./Database.
 
