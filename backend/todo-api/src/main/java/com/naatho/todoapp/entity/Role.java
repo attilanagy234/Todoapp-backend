@@ -1,6 +1,7 @@
 package com.naatho.todoapp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,8 +26,10 @@ public class Role {
     @NotBlank
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch=FetchType.LAZY)
     private List<User> users;
+
 
     @ManyToMany(fetch=FetchType.LAZY)
     private List<Privilege> privileges = new ArrayList<>();
