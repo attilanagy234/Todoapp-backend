@@ -18,31 +18,13 @@ RowLayout {
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         var theUrl = "http://localhost:8080/register";
 
-
         xmlhttp.open("POST", theUrl, true);
         xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xmlhttp.send(JSON.stringify({ "name": username.text , "email": email.text, "password": password.text } ));
 
+        successpopup.open();
+
     }
-/*
-    function requestPost(url, callback)
-    {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = (function(myxhr) {
-             return function() {
-        if(myxhr.readyState === 4 && myxhr.status === 200) {
-            callback(myxhr);
-        } else {
-             errorLabel.text = "Error code: " + myxhr.status
-        }
-     }
-})(xhr);
-    xhr.open('POST', url, true);
-    xhr.responseType = 'json';
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify({ “email”: “jakab@gmail.com”, “password”:”asdqwe”}));
-    }
-*/
 
     ColumnLayout {
 
@@ -69,16 +51,11 @@ RowLayout {
             echoMode: TextInput.Password
         }
 
-/*        TextField {
-            id: confirmPassword
-            placeholderText: qsTr("confirm password")
-            echoMode: TextInput.Password
-        }
-*/
         Button {
             text: "Register"
             Layout.alignment: Qt.AlignRight
             onClicked:  requestPost()
+
         }
 
 

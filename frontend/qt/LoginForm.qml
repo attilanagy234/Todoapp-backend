@@ -11,6 +11,16 @@ RowLayout {
         Layout.fillHeight: true
     }
 
+    function requestPost()
+    {
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        var theUrl = "http://localhost:8080/login";
+
+        xmlhttp.open("POST", theUrl, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xmlhttp.send(JSON.stringify({ "name": username.text , "email": email.text, "password": password.text } ));
+
+    }
 
     ColumnLayout {
 
@@ -37,8 +47,8 @@ RowLayout {
             text: "Login"
             Layout.alignment: Qt.AlignRight
             onClicked: {
-                pageLoader.source = "ToDoTab.qml"
-
+                stackView.replace("qrc:/ToDoTab.qml")
+                requestPost()
             }
         }
 

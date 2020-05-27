@@ -19,25 +19,25 @@ public class ProjectService {
 
     Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
-    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
+//    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
     public void save(Project project) {
         logger.debug("Saving project {}", project);
         projectRepository.save(project);
     }
 
-    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
+//    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
     public List<Project> findAll() {
         logger.debug("Querying all projects");
         return projectRepository.findAll();
     }
 
-    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
+//    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
     public Optional<Project> findById(Integer id) {
         logger.debug("Searching for project by id {}", id);
         return projectRepository.findById(id);
     }
 
-    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
+//    @PreAuthorize("hasAuthority('PROJECT_MANAGEMENT')")
     public void deleteById(Integer id) {
         logger.debug("Attempting to delete project with id {}", id);
         projectRepository.deleteById(id);

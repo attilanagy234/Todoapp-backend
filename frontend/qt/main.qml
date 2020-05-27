@@ -14,15 +14,12 @@ ApplicationWindow {
     height: 900
     title: qsTr("ToDoList")
 
-//    ToDoTab {}
-
-
-     LoginRegisterTab{
-        anchors.centerIn: parent
+    StackView {
+        anchors.fill: parent
+        id: stackView
+        initialItem:
+            Qt.resolvedUrl("qrc:/LoginRegisterTab.qml")
     }
-
-
-
 
 }
 

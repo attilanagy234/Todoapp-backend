@@ -13,7 +13,7 @@ import QtQuick.Dialogs 1.0
               Layout.alignment: parent
               orientation: Qt.Vertical
 
-            ProjectsTableView{}
+           ProjectsTableView{}
            LabelsTableView {}
            TasksTableView {}
          }

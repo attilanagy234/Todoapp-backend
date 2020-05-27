@@ -35,7 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .csrf().disable()
-                .authorizeRequests()
+/*                .authorizeRequests()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/v2/api-docs",
                         "/configuration/ui",
@@ -46,7 +46,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
+*/                .formLogin()
                 .and()
                 .logout()
                 .deleteCookies("JSESSIONID");
