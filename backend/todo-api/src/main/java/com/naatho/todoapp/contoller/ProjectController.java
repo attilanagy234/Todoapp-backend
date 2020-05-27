@@ -36,7 +36,7 @@ public class ProjectController {
     ResponseEntity<Project> getProjectByID(@PathVariable Integer id) {
         Optional<Project> foundProject = projectService.findById(id);
 
-        if (foundProject.isEmpty()) {
+        if (foundProject == null) {
             return ResponseEntity.notFound().build();
 
         } else {

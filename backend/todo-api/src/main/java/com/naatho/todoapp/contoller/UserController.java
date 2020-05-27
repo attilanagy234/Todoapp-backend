@@ -1,5 +1,6 @@
 package com.naatho.todoapp.contoller;
 
+import com.naatho.todoapp.entity.Project;
 import com.naatho.todoapp.entity.User;
 import com.naatho.todoapp.repository.UserRepository;
 import com.naatho.todoapp.service.UserService;
@@ -7,6 +8,7 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +28,10 @@ public class UserController {
 
     @PostMapping()
     public @ResponseBody
-    String addNewUser (@Valid @RequestBody User newUser) {
-
+    ResponseEntity<User> addNewUser (@Valid @RequestBody User newUser) {
         userService.save(newUser);
-
         logger.info("User saved: {}", newUser.getName());
-        return "Saved";
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping()
@@ -41,13 +41,28 @@ public class UserController {
 
     @GetMapping(path="/{id}")
     public @ResponseBody
-    Optional<User> getUserByID(@PathVariable Integer id) {
-        return userService.findById(id);
+    ResponseEntity<User> getUserByID(@PathVariable Integer id) {
+        Optional<User> foundUser = userService.findById(id);
+
+        if (foundUser == null) {
+            return ResponseEntity.notFound().build();
+
+        } else {
+            return ResponseEntity.ok(foundUser.get());
+        }
     }
 
     @DeleteMapping(path="/{id}")
     public @ResponseBody
-    void deleteUserById(@PathVariable Integer id) {
-        userService.deleteById(id);
+    ResponseEntity<User> deleteUserById(@PathVariable Integer id) {
+        Optional<User> foundUser = userService.findById(id);
+
+        if (foundUser == null) {
+            return ResponseEntity.notFound().build();
+
+        } else {
+            userService.deleteById(id);
+            return ResponseEntity.ok(foundUser.get());
+        }
     }
 }
