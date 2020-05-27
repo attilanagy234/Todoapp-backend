@@ -13,6 +13,8 @@ public class Notification {
         this.taskName = taskName;
     }
 
+    public Notification() {}
+
     public String getUsername() {
         return username;
     }
