@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>MyButton.qml</file>
+        <file>LoginForm.qml</file>
+        <file>LoginRegisterTab.qml</file>
+        <file>RegisterForm.qml</file>
+        <file>ProjectsTableView.qml</file>
+        <file>LabelsTableView.qml</file>
+        <file>TasksTableView.qml</file>
+        <file>ToDoTab.qml</file>
+    </qresource>
+</RCC>
