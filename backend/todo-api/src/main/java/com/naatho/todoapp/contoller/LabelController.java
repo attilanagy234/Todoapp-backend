@@ -48,7 +48,7 @@ public class LabelController {
     public @ResponseBody
     ResponseEntity<Label> deleteLabelById(@PathVariable String id) {
         Optional<Label> foundLabel = labelService.findById(id);
-        if (foundLabel.isEmpty()) {
+        if (foundLabel == null) {
             return ResponseEntity.notFound().build();
         } else {
             labelService.deleteById(id);

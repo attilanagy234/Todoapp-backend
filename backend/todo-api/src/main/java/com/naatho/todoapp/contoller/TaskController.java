@@ -1,6 +1,7 @@
 package com.naatho.todoapp.contoller;
 
 import com.naatho.todoapp.entity.Label;
+import com.naatho.todoapp.entity.Project;
 import com.naatho.todoapp.entity.Task;
 import com.naatho.todoapp.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ public class TaskController {
 
     @PostMapping()
     public @ResponseBody
-    String addNewTask (@Valid @RequestBody Task task) {
+    ResponseEntity<Task> addNewTask (@Valid @RequestBody Task task) {
         // Convention: successful create returns HTTP:201
         taskService.save(task);
-        return "Saved";
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping()
@@ -46,8 +47,15 @@ public class TaskController {
 
     @DeleteMapping(path="/{id}")
     public @ResponseBody
-    void deleteTaskById(@PathVariable Integer id) {
-        taskService.deleteById(id);
+    ResponseEntity<Task> deleteTaskById(@PathVariable Integer id) {
+        Optional<Task> foundTask = taskService.findById(id);
+
+        if (foundTask == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            taskService.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
     }
 
     @PutMapping(path="/{taskId}/label/{labelId}")
@@ -57,7 +65,13 @@ public class TaskController {
 
     @PutMapping(path="/{id}")
     public @ResponseBody
-    Optional<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) throws Exception {
-        return taskService.updateTask(id, task);
+    ResponseEntity<Task> updateTask(@PathVariable Integer id, @RequestBody Task task) throws Exception {
+        Optional<Task> foundTask = taskService.findById(id);
+        if (foundTask == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            taskService.updateTask(id, task);
+            return ResponseEntity.ok().build();
+        }
     }
 }
