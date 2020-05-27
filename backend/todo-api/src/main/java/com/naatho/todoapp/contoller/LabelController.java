@@ -23,9 +23,9 @@ public class LabelController {
 
     @PostMapping()
     public @ResponseBody
-    String addNewLabel (@Valid @RequestBody Label label) {
+    ResponseEntity<Label> addNewLabel (@Valid @RequestBody Label label) {
         labelService.save(label);
-        return "Saved";
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping()
@@ -46,9 +46,14 @@ public class LabelController {
     }
     @DeleteMapping(path="/{id}")
     public @ResponseBody
-    void deleteLabelById(@PathVariable String id) {
-        labelService.deleteById(id);
+    ResponseEntity<Label> deleteLabelById(@PathVariable String id) {
+        Optional<Label> foundLabel = labelService.findById(id);
+        if (foundLabel.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            labelService.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
     }
-
 
 }
