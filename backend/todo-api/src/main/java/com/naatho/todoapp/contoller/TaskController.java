@@ -23,7 +23,6 @@ public class TaskController {
     @PostMapping()
     public @ResponseBody
     ResponseEntity<Task> addNewTask (@Valid @RequestBody Task task) {
-        // Convention: successful create returns HTTP:201
         taskService.save(task);
         return ResponseEntity.ok().build();
     }

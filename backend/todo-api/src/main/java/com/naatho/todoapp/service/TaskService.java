@@ -32,7 +32,6 @@ public class TaskService {
         Optional<Label> l = labelRepository.findById(labelId);
         if (t.isEmpty() || l.isEmpty()) {
             logger.trace("Task or label is non-existent, t: {}, l: {}", t, l);
-            // TODO: proper exception handling
             throw new Exception();
         }
 

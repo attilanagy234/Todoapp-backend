@@ -1,7 +1,6 @@
 package com.naatho.todoapp.service;
 
 import com.naatho.todoapp.contoller.MainController;
-import com.naatho.todoapp.entity.Privilege;
 import com.naatho.todoapp.entity.Role;
 import com.naatho.todoapp.entity.User;
 import com.naatho.todoapp.entity.UserDetailsImpl;
@@ -15,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -34,25 +32,24 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+  //  @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public List<User> findAll() {
         logger.debug("Querying all users");
         return userRepository.findAll();
     }
 
-    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+    //@PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public Optional<User> findById(Integer id) {
         logger.debug("Searching for user by id {} ", id);
         return userRepository.findById(id);
     }
 
-    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
+    //@PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public void deleteById(Integer id) {
         logger.debug("Attempting to delete user by id {}", id);
         userRepository.deleteById(id);
     }
 
-    @PreAuthorize("hasAuthority('USER_MANAGEMENT')")
     public User findByEmail(String email) {
         logger.debug("Searching for user by email {}", email);
         return userRepository.findByEmail(email);
