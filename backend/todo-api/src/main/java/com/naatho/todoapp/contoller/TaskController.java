@@ -37,7 +37,7 @@ public class TaskController {
     public @ResponseBody
     ResponseEntity<Task> getTaskByID(@PathVariable Integer id) {
         Optional<Task> foundTask = taskService.findById(id);
-        if (foundTask.isEmpty()) {
+        if (foundTask == null) {
             return ResponseEntity.notFound().build();
 
         } else {
